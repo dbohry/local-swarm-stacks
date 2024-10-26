@@ -1,0 +1,33 @@
+services:
+  pihole:
+    image: pihole/pihole:latest
+    environment:
+      - TZ=Europe/Berlin
+    volumes:
+      - pihole_etc_shared:/etc/pihole
+      - pihole_etc-dnsmasq_shared:/etc/dnsmasq.d
+    networks:
+      - pihole_network
+    ports:
+      - "0.0.0.0:53:53/tcp"
+      - "0.0.0.0:53:53/udp"
+      - "0.0.0.0:8080:80/tcp"
+    deploy:
+      replicas: 1
+
+networks:
+  pihole_network:
+    driver: overlay
+    attachable: true
+
+volumes:
+  pihole_etc_shared:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.178.9,rw"
+      device: ":/volume1/Shared/docker/pihole/etc"
+  pihole_etc-dnsmasq_shared:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.178.9,rw"
+      device: ":/volume1/Shared/docker/pihole/etc-dnsmasq.d"

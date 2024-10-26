@@ -1,0 +1,28 @@
+services:
+  teamspeak:
+    image: ertagh/teamspeak3-server
+    environment:
+      - TS_UPDATE=1
+      - TIME_ZONE=Europe/Berlin
+    volumes:
+      - teamspeak_data_shared:/teamspeak/save/
+    networks:
+      - teamspeak_network
+    ports:
+      - 10011:10011/tcp
+      - 30033:30033/tcp
+      - 9987:9987/udp
+    deploy:
+      replicas: 1
+
+networks:
+  teamspeak_network:
+    driver: overlay
+    attachable: true
+
+volumes:
+  teamspeak_data_shared:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.178.9,rw"
+      device: ":/volume1/Shared/docker/teamspeak/data"

@@ -1,0 +1,33 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    environment:
+      - ROCKET_ENV=staging
+      - ROCKET_PORT=80
+      - ROCKET_WORKERS=10
+    volumes:
+      - vaultwarden_config_shared:/config
+      - vaultwarden_data_shared:/data
+    networks:
+      - vaultwarden_network
+    ports:
+      - 32577:80
+    deploy:
+      replicas: 1
+
+networks:
+  vaultwarden_network:
+    driver: overlay
+    attachable: true
+
+volumes:
+  vaultwarden_data_shared:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.178.9,rw"
+      device: ":/volume1/Shared/docker/vaultwarden/data"
+  vaultwarden_config_shared:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.178.9,rw"
+      device: ":/volume1/Shared/docker/vaultwarden/config"
