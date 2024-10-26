@@ -1,8 +1,6 @@
 services:
   dns-updater:
     image: dbohry/dns-updater:x64-latest
-    container_name: dns-updater
-    restart: unless-stopped
     environment:
       - TARGET_URL=https://freedns.afraid.org/dynamic/update.php?b24zWGdmOGpMbXZhcmFCOVZHZXBlckM4OjIxNzg0NDM2
     deploy:
