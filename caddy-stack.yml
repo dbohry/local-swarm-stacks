@@ -1,0 +1,51 @@
+services:
+  caddy:
+    image: caddy:latest
+    environment:
+      - TS_UPDATE=1
+      - TIME_ZONE=Europe/Berlin
+    volumes:
+      - caddy_etc_shared:/etc/caddy
+      - caddy_domains_shared:/etc/caddy/domains
+      - caddy_site_shared:/srv
+      - caddy_data_shared:/data
+      - caddY_config_shared:/config
+    networks:
+      - caddy_network
+    ports:
+      - 80:80
+      - 443:443
+    deploy:
+      replicas: 1
+
+networks:
+  caddy_network:
+    driver: overlay
+    attachable: true
+
+volumes:
+  caddy_etc_shared:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.178.9,rw"
+      device: ":/volume1/Shared/docker/caddy"
+  caddy_domains_shared:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.178.9,rw"
+      device: ":/volume1/Shared/docker/caddy/domains"
+  caddy_site_shared:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.178.9,rw"
+      device: ":/volume1/Shared/docker/caddy/site"
+  caddy_data_shared:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.178.9,rw"
+      device: ":/volume1/Shared/docker/caddy/caddy_data"
+  caddy_config_shared:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.178.9,rw"
+      device: ":/volume1/Shared/docker/caddy/caddy_config"
