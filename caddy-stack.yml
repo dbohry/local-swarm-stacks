@@ -28,7 +28,7 @@ volumes:
     driver_opts:
       type: "nfs"
       o: "addr=192.168.178.9,rw"
-      device: ":/volume1/Shared/docker/caddy"
+      device: ":/volume1/Shared/docker/caddy/etc"
   caddy_domains_shared:
     driver_opts:
       type: "nfs"
