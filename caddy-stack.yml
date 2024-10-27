@@ -9,7 +9,7 @@ services:
       - caddy_domains_shared:/etc/caddy/domains
       - caddy_site_shared:/srv
       - caddy_data_shared:/data
-      - caddY_config_shared:/config
+      - caddy_config_shared:/config
     networks:
       - caddy_network
     ports:
