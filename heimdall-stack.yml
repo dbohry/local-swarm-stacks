@@ -9,9 +9,6 @@ services:
       - 51908:80
     deploy:
       replicas: 1
-      resources:
-        limits:
-          memory: 30M
 
 networks:
   heimdall_network:
