@@ -11,7 +11,7 @@ services:
       replicas: 1
 
 networks:
-  uptime_network:
+  uptimekuma_network:
     driver: overlay
     attachable: true
 
