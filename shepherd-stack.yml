@@ -1,0 +1,13 @@
+services:
+  shepherd:
+    image: containrrr/shepherd
+    environment:
+      SLEEP_TIME: "1440m"
+      ROLLBACK_ON_FAILURE: "true" 
+      TZ: Europe/Berlin 
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
