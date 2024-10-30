@@ -1,0 +1,23 @@
+services:
+  uptimekuma:
+    image: louislam/uptime-kuma:1
+    volumes:
+      - uptimekuma_data_shared:/app/data
+    networks:
+      - uptimekuma_network
+    ports:
+      - 3001:3001
+    deploy:
+      replicas: 1
+
+networks:
+  uptime_network:
+    driver: overlay
+    attachable: true
+
+volumes:
+  uptimekuma_data_shared:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.178.9,rw"
+      device: ":/volume1/Shared/docker/uptimekuma/data"
