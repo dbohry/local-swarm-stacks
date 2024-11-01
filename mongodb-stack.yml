@@ -1,0 +1,24 @@
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data_shared:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: H3H*sW7GXv7Eiz
+    networks:
+      - mongo_network
+
+networks:
+  mongo_network:
+    driver: overlay
+    attachable: true
+
+volumes:
+  mongo_data_shared:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.178.9,rw"
+      device: ":/volume1/Shared/docker/mongodb/data"
