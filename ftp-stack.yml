@@ -1,0 +1,40 @@
+services:
+  filebrowser:
+    image: filebrowser/filebrowser
+    environment:
+      FB_CONFIG: "/config/filebrowser.json"
+      FB_DATABASE: "/config/database.db"
+    ports:
+      - "49289:80"
+    volumes:
+      - ftp_config_shared:/config
+      - ftp_data_shared:/srv
+    networks:
+      - ftp_network
+
+  ftpserver:
+    image: nginx:alpine
+    ports:
+      - "49288:80"
+    volumes:
+      - ftp_config_shared:/etc/nginx/conf.d
+      - ftp_data_shared:/usr/share/nginx/html
+    networks:
+      - ftp_network
+
+networks:
+  ftp_network:
+    driver: overlay
+    attachable: true
+
+volumes:
+  ftp_data_shared:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.178.9,rw"
+      device: ":/volume1/Shared/docker/ftp/data"
+  ftp_config_shared:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.178.9,rw"
+      device: ":/volume1/Shared/docker/ftp/config"
