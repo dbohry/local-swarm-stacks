@@ -3,6 +3,8 @@ services:
     image: dbohry/dns-updater:x64-latest
     environment:
       - TARGET_URL=https://freedns.afraid.org/dynamic/update.php?b24zWGdmOGpMbXZhcmFCOVZHZXBlckM4OjIxNzg0NDM2
+      - NOTIFY_URL=https://notify.lhamacorp.com/status
+      - FREQUENCY=300
     deploy:
       replicas: 1
       resources:
