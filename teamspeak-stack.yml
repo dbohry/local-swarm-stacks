@@ -1,6 +1,6 @@
 services:
   teamspeak:
-    image: ertagh/teamspeak3-server
+    image: ertagh/teamspeak3-server:latest-box
     environment:
       - TS_UPDATE=1
       - TIME_ZONE=Europe/Berlin
