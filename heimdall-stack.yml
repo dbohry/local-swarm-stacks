@@ -2,7 +2,7 @@ services:
   heimdall:
     image: ghcr.io/linuxserver/heimdall
     volumes:
-      - heimdall_config_shared:/config
+      - /mnt/shared/heimdall/config:/config
     networks:
       - heimdall_network
     ports:
@@ -15,9 +15,3 @@ networks:
     driver: overlay
     attachable: true
 
-volumes:
-  heimdall_config_shared:
-    driver_opts:
-      type: "nfs"
-      o: "addr=192.168.178.9,rw"
-      device: ":/volume1/Shared/docker/heimdall/config"

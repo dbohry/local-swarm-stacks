@@ -5,7 +5,7 @@ services:
       - TS_UPDATE=1
       - TIME_ZONE=Europe/Berlin
     volumes:
-      - teamspeak_data_shared:/teamspeak/save/
+      - /mnt/shared/teamspeak/data:/teamspeak/save/
     networks:
       - teamspeak_network
     ports:
@@ -20,9 +20,3 @@ networks:
     driver: overlay
     attachable: true
 
-volumes:
-  teamspeak_data_shared:
-    driver_opts:
-      type: "nfs"
-      o: "addr=192.168.178.9,rw"
-      device: ":/volume1/Shared/docker/teamspeak/data"

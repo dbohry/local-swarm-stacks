@@ -7,8 +7,8 @@ services:
     ports:
       - "49289:80"
     volumes:
-      - ftp_config_shared:/config
-      - ftp_data_shared:/srv
+      - /mnt/shared/ftp/config:/config
+      - /mnt/shared/ftp/data:/srv
     networks:
       - ftp_network
 
@@ -17,8 +17,8 @@ services:
     ports:
       - "49288:80"
     volumes:
-      - ftp_config_shared:/etc/nginx/conf.d
-      - ftp_data_shared:/usr/share/nginx/html
+      - /mnt/shared/ftp/config:/etc/nginx/conf.d
+      - /mnt/shared/ftp/data:/usr/share/nginx/html
     networks:
       - ftp_network
 
@@ -27,14 +27,3 @@ networks:
     driver: overlay
     attachable: true
 
-volumes:
-  ftp_data_shared:
-    driver_opts:
-      type: "nfs"
-      o: "addr=192.168.178.9,rw"
-      device: ":/volume1/Shared/docker/ftp/data"
-  ftp_config_shared:
-    driver_opts:
-      type: "nfs"
-      o: "addr=192.168.178.9,rw"
-      device: ":/volume1/Shared/docker/ftp/config"

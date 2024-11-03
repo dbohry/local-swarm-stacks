@@ -6,8 +6,8 @@ services:
       - ROCKET_PORT=80
       - ROCKET_WORKERS=10
     volumes:
-      - vaultwarden_config_shared:/config
-      - vaultwarden_data_shared:/data
+      - /mnt/shared/vaultwarden/config:/config
+      - /mnt/shared/vaultwarden/data:/data
     networks:
       - vaultwarden_network
     ports:

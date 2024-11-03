@@ -7,8 +7,8 @@ services:
       - TZ=Europe/Berlin
     user: "1000"
     volumes:
-      - ntfy_cache_shared:/var/cache/ntfy
-      - ntfy_etc_shared:/etc/ntfy
+      - /mnt/shared/ntfy/cache:/var/cache/ntfy
+      - /mnt/shared/ntfy/etc:/etc/ntfy
     networks:
       - ntfy_network
     ports:
@@ -25,14 +25,3 @@ networks:
     driver: overlay
     attachable: true
 
-volumes:
-  ntfy_cache_shared:
-    driver_opts:
-      type: "nfs"
-      o: "addr=192.168.178.9,rw"
-      device: ":/volume1/Shared/docker/ntfy/cache"
-  ntfy_etc_shared:
-    driver_opts:
-      type: "nfs"
-      o: "addr=192.168.178.9,rw"
-      device: ":/volume1/Shared/docker/ntfy/etc"
