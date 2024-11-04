@@ -10,7 +10,14 @@ services:
     volumes:
       - /mnt/shared/influxdb/data:/etc/influxdb2
       - /mnt/shared/influxdb/lib:/var/lib/influxdb2
+    networks:
+      - influxdb_network
     deploy:
       resources:
         limits:
           memory: 512m
+
+networks:
+  influxdb_network:
+    driver: overlay
+    attachable: true
