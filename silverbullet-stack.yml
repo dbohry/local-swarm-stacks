@@ -1,0 +1,16 @@
+services:
+  silverbullet:
+    image: zefhemel/silverbullet
+    volumes:
+      - /mnt/shared/silverbullet/space:/space
+    networks:
+      - silverbullet_network
+    ports:
+      - 37296:3000
+    deploy:
+      replicas: 1
+
+networks:
+  silverbullet_network:
+    driver: overlay
+    attachable: true

@@ -19,15 +19,3 @@ networks:
   vaultwarden_network:
     driver: overlay
     attachable: true
-
-volumes:
-  vaultwarden_data_shared:
-    driver_opts:
-      type: "nfs"
-      o: "addr=192.168.178.9,rw"
-      device: ":/volume1/Shared/docker/vaultwarden/data"
-  vaultwarden_config_shared:
-    driver_opts:
-      type: "nfs"
-      o: "addr=192.168.178.9,rw"
-      device: ":/volume1/Shared/docker/vaultwarden/config"
