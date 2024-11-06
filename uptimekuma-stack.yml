@@ -1,6 +1,6 @@
 services:
   uptimekuma:
-    image: louislam/uptime-kuma:1
+    image: louislam/uptime-kuma
     volumes:
       - /mnt/shared/uptimekuma/data:/app/data
     networks:
