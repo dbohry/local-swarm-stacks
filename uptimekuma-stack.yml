@@ -9,6 +9,9 @@ services:
       - 3001:3001
     deploy:
       replicas: 1
+      resources:
+        limits:
+          memory: 256M
 
 networks:
   uptimekuma_network:
