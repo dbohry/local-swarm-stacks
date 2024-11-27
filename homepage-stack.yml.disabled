@@ -1,0 +1,20 @@
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    environment:
+      - TARGET_URL=https://freedns.afraid.org/dynamic/update.php?b24zWGdmOGpMbXZhcmFCOVZHZXBlckM4OjIxNzg0NDM2
+      - NOTIFY_URL=https://notify.lhamacorp.com/status
+      - FREQUENCY=60
+    ports:
+      - 30721:3000
+    volumes:
+      - /mnt/shared/homepage/config:/app/config
+    networks:
+      - homepage_network
+    deploy:
+      replicas: 1
+
+networks:
+  homepage_network:
+    driver: overlay
+    attachable: true

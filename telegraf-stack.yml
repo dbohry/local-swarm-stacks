@@ -1,0 +1,9 @@
+services:
+  telegraf:
+    image: telegraf:latest
+    volumes:
+      - /mnt/shared/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    networks:
+      - monitoring_network
+    deploy:
+      mode: global

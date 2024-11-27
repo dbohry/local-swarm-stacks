@@ -1,0 +1,11 @@
+services:
+  grafana:
+    image: grafana/grafana-enterprise:latest
+    ports:
+      - 48711:3000
+    volumes:
+      - /mnt/shared/grafana/datasources:/etc/grafana/provisioning/datasources
+      - /mnt/shared/grafana/data:/var/lib/grafana
+    networks:
+      - monitoring_network
+

@@ -1,2 +1,3 @@
 cloudflare-stack.yml
 dns-updater-stack.yml
+stock-updater-stack.yml
