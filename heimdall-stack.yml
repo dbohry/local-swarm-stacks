@@ -12,6 +12,8 @@ services:
       resources:
         limits:
           memory: 128M
+      update_config:
+        order: start-first
 
 networks:
   heimdall_network:

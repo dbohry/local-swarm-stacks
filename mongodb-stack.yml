@@ -10,6 +10,9 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: H3H*sW7GXv7Eiz
     networks:
       - mongo_network
+    deploy:
+      update_config:
+        order: start-first
 
 networks:
   mongo_network:

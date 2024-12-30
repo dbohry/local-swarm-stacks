@@ -7,5 +7,7 @@ services:
       - /mnt/shared/openwebui/data:/app/backend/data
     deploy:
       replicas: 1
+      update_config:
+        order: start-first
     ports:
       - 37913:8080

@@ -9,6 +9,8 @@ services:
       - 37296:3000
     deploy:
       replicas: 1
+      update_config:
+        order: start-first
 
 networks:
   silverbullet_network:

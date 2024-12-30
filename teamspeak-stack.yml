@@ -14,6 +14,8 @@ services:
       - 9987:9987/udp
     deploy:
       replicas: 1
+      update_config:
+        order: start-first
 
 networks:
   teamspeak_network:

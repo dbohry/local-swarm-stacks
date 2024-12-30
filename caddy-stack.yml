@@ -17,6 +17,8 @@ services:
       - 443:443
     deploy:
       replicas: 1
+      update_config:
+        order: start-first
 
 networks:
   caddy_network:

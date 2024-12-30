@@ -12,6 +12,8 @@ services:
       resources:
         limits:
           memory: 256M
+      update_config:
+        order: start-first
 
 networks:
   uptimekuma_network:

@@ -19,6 +19,9 @@ services:
       - "5443:5443/udp"
     networks:
       - host
+    deploy:
+      update_config:
+        order: start-first
 
 networks:
   host:

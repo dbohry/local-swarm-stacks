@@ -19,6 +19,9 @@ services:
         timeout: 10s
         retries: 3
         start_period: 40s
+    deploy:
+      update_config:
+        order: start-first
 
 networks:
   ntfy_network:
