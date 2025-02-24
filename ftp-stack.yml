@@ -11,6 +11,9 @@ services:
       - /mnt/shared/ftp/data:/srv
     networks:
       - ftp_network
+    deploy:
+      placement:
+        constraints: [node.role == worker]
 
   ftpserver:
     image: nginx:alpine
@@ -21,6 +24,9 @@ services:
       - /mnt/shared/ftp/data:/usr/share/nginx/html
     networks:
       - ftp_network
+    deploy:
+      placement:
+        constraints: [node.role == worker]
 
 networks:
   ftp_network:

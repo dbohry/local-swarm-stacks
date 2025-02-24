@@ -1,6 +1,6 @@
 services:
   adguardhome:
-    image: adguard/adguardhome:latest
+    image: adguard/adguardhome:v0.107.57
     volumes:
       - /mnt/shared/adguard/data:/opt/adguardhome/work
       - /mnt/shared/adguard/config:/opt/adguardhome/conf
@@ -17,8 +17,6 @@ services:
       - "8853:8853/udp"
       - "5443:5443/tcp"
       - "5443:5443/udp"
-    networks:
-      - host
     deploy:
       update_config:
         order: start-first

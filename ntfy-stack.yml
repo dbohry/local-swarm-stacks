@@ -22,6 +22,8 @@ services:
     deploy:
       update_config:
         order: start-first
+      placement:
+        constraints: [node.role == worker]
 
 networks:
   ntfy_network:
