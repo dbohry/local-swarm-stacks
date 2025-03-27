@@ -17,11 +17,12 @@ services:
       - "8853:8853/udp"
       - "5443:5443/tcp"
       - "5443:5443/udp"
+    networks:
+      - adguard_network
     deploy:
       update_config:
         order: start-first
 
 networks:
-  host:
-    external: true
-    name: host
+  adguard_network:
+    driver: overlay
