@@ -1,0 +1,19 @@
+services:
+  ocr-be:
+    image: lhamacorp/spring-ocr:arm-latest
+    environment:
+      - inference_url=http://192.168.178.55:11434/api/generate
+      - inference_model=gemma3:4b
+      - JAVA_VERSION=21
+    ports:
+      - 47907:8080
+    deploy:
+      replicas: 1 
+      resources:
+        limits:
+          memory: 300M
+      update_config:
+        order: start-first
+      placement:
+        constraints: [node.role == worker]
+
