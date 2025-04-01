@@ -1,5 +1,5 @@
 services:
-  ocr-be:
+  be:
     image: lhamacorp/spring-ocr:arm-latest
     environment:
       - inference_url=http://192.168.178.55:11434/api/generate
