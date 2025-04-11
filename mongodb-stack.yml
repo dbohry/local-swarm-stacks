@@ -1,6 +1,6 @@
 services:
   mongodb:
-    image: mongo:latest
+    image: mongo:8.0.6
     ports:
       - "27017:27017"
     volumes:
@@ -14,7 +14,7 @@ services:
       update_config:
         order: start-first
       placement:
-        constraints: [node.role == worker]
+        constraints: [node.role == manager]
 
 networks:
   mongo_network:
