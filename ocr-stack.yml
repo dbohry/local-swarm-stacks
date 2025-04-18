@@ -1,6 +1,6 @@
 services:
   be:
-    image: lhamacorp/spring-ocr:arm-latest
+    image: lhamacorp/spring-ocr:latest
     environment:
       - inference_url=http://192.168.178.55:11434/api/generate
       - inference_model=gemma3:4b

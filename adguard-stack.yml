@@ -1,6 +1,6 @@
 services:
   adguardhome:
-    image: adguard/adguardhome:v0.107.59
+    image: adguard/adguardhome:v0.107.60
     volumes:
       - /mnt/shared/adguard/data:/opt/adguardhome/work
       - /mnt/shared/adguard/config:/opt/adguardhome/conf
