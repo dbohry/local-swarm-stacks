@@ -1,0 +1,56 @@
+services:
+  redis:
+    image: docker.io/library/redis:7
+    restart: unless-stopped
+    volumes:
+      - /mnt/shared/paperless/redis:/data
+
+  db:
+    image: docker.io/library/postgres:17
+    restart: unless-stopped
+    volumes:
+      - /mnt/shared/paperless/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: paperless
+      POSTGRES_USER: paperless
+      POSTGRES_PASSWORD: paperless
+
+  gotenberg:
+    image: docker.io/gotenberg/gotenberg:8.19
+    restart: unless-stopped
+    command:
+      - "gotenberg"
+      - "--chromium-disable-javascript=true"
+      - "--chromium-allow-list=file:///tmp/.*"
+
+  tika:
+    image: docker.io/apache/tika:latest
+    restart: unless-stopped
+
+  paperless:
+    image: paperlessngx/paperless-ngx:2.15
+    depends_on:
+      - db
+      - redis
+      - gotenberg
+      - tika
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - PAPERLESS_REDIS=redis://redis:6379
+      - PAPERLESS_DBHOST=db
+      - PAPERLESS_TIKA_ENABLED=1
+      - PAPERLESS_TIKA_GOTENBERG_ENDPOINT=http://gotenberg:3000
+      - PAPERLESS_TIKA_ENDPOINT=http://tika:9998
+      - PAPERLESS_SECRET_KEY=WGN2^RV4WgP4qv
+      - PAPERLESS_OCR_LANGUAGE=eng
+    volumes:
+      - /mnt/shared/paperless/data:/usr/src/paperless/data
+      - /mnt/shared/paperless/media:/usr/src/paperless/media
+    ports:
+      - 44225:8000
+    deploy:
+      replicas: 1
+      update_config:
+        order: start-first
+
